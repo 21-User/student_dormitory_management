@@ -245,4 +245,7 @@
     from admin
     where name = #{account}
   </select>
+  <select id="findAll" resultType="com.fc.entity.Admin">
+    select * from admin where name = #{name}
+  </select>
 </mapper>

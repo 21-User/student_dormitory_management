@@ -2,10 +2,12 @@ package com.fc.dao;
 
 import com.fc.entity.Student;
 import com.fc.entity.StudentExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface StudentMapper {
     long countByExample(StudentExample example);
 
@@ -28,4 +30,8 @@ public interface StudentMapper {
     int updateByPrimaryKeySelective(Student record);
 
     int updateByPrimaryKey(Student record);
+
+    Student findAllBySn(@Param("account") String account);
+
+    List<Student> findAllByName(@Param("account") String account);
 }

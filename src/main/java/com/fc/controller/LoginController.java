@@ -15,7 +15,6 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
-
     @PostMapping("login")
     public ResultVo<Object> login(@RequestBody LoginVo loginVo, HttpSession session) {
 

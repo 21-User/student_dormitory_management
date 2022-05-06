@@ -32,4 +32,6 @@ public interface AdminMapper {
     int updateByPrimaryKey(Admin record);
 
     Admin findAllByName(@Param("account") String account);
+
+    Admin findAll(@Param("name") String name);
 }

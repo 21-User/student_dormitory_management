@@ -178,7 +178,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+    <update id="updateByExampleSelective" parameterType="map">
     update dormitory_manager
     <set>
       <if test="record.id != null">
@@ -270,4 +270,15 @@
       sn = #{sn,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+<!--  通过宿管号查询所有-->
+  <select id="findAllBySn" resultType="com.fc.entity.DormitoryManager">
+    select *
+    from dormitory_manager
+    where sn = #{account}
+  </select>
+  <select id="findAllByName" resultType="com.fc.entity.DormitoryManager">
+    select *
+    from dormitory_manager
+    where name = #{account}
+  </select>
 </mapper>

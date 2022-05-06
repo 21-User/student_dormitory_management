@@ -2,10 +2,12 @@ package com.fc.dao;
 
 import com.fc.entity.DormitoryManager;
 import com.fc.entity.DormitoryManagerExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface DormitoryManagerMapper {
     long countByExample(DormitoryManagerExample example);
 
@@ -28,4 +30,8 @@ public interface DormitoryManagerMapper {
     int updateByPrimaryKeySelective(DormitoryManager record);
 
     int updateByPrimaryKey(DormitoryManager record);
+
+    DormitoryManager findAllBySn(@Param("account") String account);
+
+    List<DormitoryManager> findAllByName(@Param("account") String account);
 }
