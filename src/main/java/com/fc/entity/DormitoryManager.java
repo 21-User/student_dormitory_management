@@ -1,5 +1,7 @@
 package com.fc.entity;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import java.util.Date;
 
 public class DormitoryManager {

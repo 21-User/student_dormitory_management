@@ -108,9 +108,17 @@ function dormitoryManagerQuery() {
                 contentType: "application/json;charset=UTF-8",
                 url: '/dormitoryManager/findByName?name=' + dormitoryManagerName,
                 success: function (data) {
-                    contentDormitoryManagerData = data;
+                    var dataArray = new Array();
+                    if (!isNull(data)) {
+                        dataArray.push(data);
+                    }
+                    contentDormitoryManagerData = dataArray;
                     var table = $('#contentData');
                     table.bootstrapTable('refreshOptions', {data: contentDormitoryManagerData, dataType: "json"});
+
+                    // contentDormitoryManagerData = data;
+                    // var table = $('#contentData');
+                    // table.bootstrapTable('refreshOptions', {data: contentDormitoryManagerData, dataType: "json"});
                 },
                 error: function (data) {
                 }

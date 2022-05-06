@@ -2,10 +2,12 @@ package com.fc.dao;
 
 import com.fc.entity.Dormitory;
 import com.fc.entity.DormitoryExample;
+import com.fc.vo.DormitoryVO;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface DormitoryMapper {
     long countByExample(DormitoryExample example);
 
@@ -28,4 +30,6 @@ public interface DormitoryMapper {
     int updateByPrimaryKeySelective(Dormitory record);
 
     int updateByPrimaryKey(Dormitory record);
+
+    List<DormitoryVO> findAll();
 }

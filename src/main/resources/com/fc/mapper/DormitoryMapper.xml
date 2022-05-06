@@ -288,4 +288,10 @@
       sn = #{sn,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="findAll" resultType="com.fc.vo.DormitoryVO">
+    select dy.*, b.name as buildingName
+    from dormitory dy
+    inner join building b
+    on dy.building_id = b.id
+  </select>
 </mapper>
