@@ -3,9 +3,11 @@ package com.fc.dao;
 import com.fc.entity.Student;
 import com.fc.entity.StudentExample;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface StudentMapper {
     long countByExample(StudentExample example);
 
@@ -28,4 +30,8 @@ public interface StudentMapper {
     int updateByPrimaryKeySelective(Student record);
 
     int updateByPrimaryKey(Student record);
+
+    Student findAllBySn(String account);
+
+    List<Student> findAllByName(String account);
 }
