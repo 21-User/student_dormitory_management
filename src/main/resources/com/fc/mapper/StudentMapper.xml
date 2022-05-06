@@ -274,6 +274,6 @@
     select * from student where sn = #{account}
   </select>
   <select id="findAllByName" resultType="com.fc.entity.Student">
-    select * from student where name = #{account}
+    select * from student where name = #{name}
   </select>
 </mapper>

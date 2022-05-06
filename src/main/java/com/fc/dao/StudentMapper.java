@@ -33,5 +33,5 @@ public interface StudentMapper {
 
     Student findAllBySn(@Param("account") String account);
 
-    List<Student> findAllByName(@Param("account") String account);
+    List<Student> findAllByName(@Param("name") String name);
 }

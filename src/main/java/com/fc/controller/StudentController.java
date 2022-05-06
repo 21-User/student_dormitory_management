@@ -3,11 +3,9 @@ package com.fc.controller;
 import com.fc.entity.Student;
 import com.fc.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,5 +18,26 @@ public class StudentController {
     @ResponseBody
     public List<Student> findAll() {
         return studentService.findAll();
+    }
+
+    @PostMapping("addOrUpdate")
+    public void addOrUpdate(@RequestBody Student student) {
+        studentService.addOrUpdate(student);
+    }
+
+    @GetMapping("findBySn")
+    public Student findBySn(String sn) {
+        return studentService.findBySn(sn);
+    }
+
+    @GetMapping("findByName")
+    public List<Student> findByName(String name) {
+
+        return studentService.findByName(name);
+    }
+
+    @GetMapping("delete")
+    public void delete(Student student) {
+        studentService.delete(student);
     }
 }

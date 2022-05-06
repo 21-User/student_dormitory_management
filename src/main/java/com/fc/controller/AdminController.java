@@ -2,12 +2,8 @@ package com.fc.controller;
 
 import com.fc.entity.Admin;
 import com.fc.service.AdminService;
-import com.fc.vo.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +14,23 @@ public class AdminController {
     private AdminService adminService;
 
     @GetMapping("findAll")
-    @ResponseBody
     public List<Admin> findAll() {
 
         return adminService.findAll();
+    }
+
+    @PostMapping("addOrUpdate")
+    public void addOrUpdate(@RequestBody Admin admin) {
+        adminService.addOrUpdate(admin);
+    }
+
+    @GetMapping("findByName")
+    public Admin findByName(String name) {
+        return adminService.findByName(name);
+    }
+
+    @GetMapping("delete")
+    public void delete(Admin admin) {
+        adminService.delete(admin);
     }
 }
