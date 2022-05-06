@@ -2,11 +2,12 @@ package com.fc.dao;
 
 import com.fc.entity.DormitoryManager;
 import com.fc.entity.DormitoryManagerExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-@Repository
+@Mapper
 public interface DormitoryManagerMapper {
     long countByExample(DormitoryManagerExample example);
 
