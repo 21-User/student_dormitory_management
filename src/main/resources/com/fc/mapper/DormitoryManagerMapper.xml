@@ -282,4 +282,6 @@
     from dormitory_manager
     where name = #{account}
   </select>
+
+
 </mapper>

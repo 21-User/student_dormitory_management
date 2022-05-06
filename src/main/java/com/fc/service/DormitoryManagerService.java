@@ -11,9 +11,9 @@ public interface DormitoryManagerService {
 
     DormitoryManager findBySn(String sn);
 
-    ResultVo<List<DormitoryManager>> findAll();
+    List findAll();
 
-    void addOrUpdate(String id, String name, String password, Date createTime);
+    void addOrUpdate(String id, String name, String password, Date createTime, String sex, String sn);
 
     void delete(String id);
 }

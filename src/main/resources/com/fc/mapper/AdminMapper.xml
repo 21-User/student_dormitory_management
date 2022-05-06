@@ -244,6 +244,6 @@
   <select id="findAllByName" resultType="com.fc.entity.Admin">
     select *
     from admin
-    where id = #{account}
+    where name = #{account}
   </select>
 </mapper>

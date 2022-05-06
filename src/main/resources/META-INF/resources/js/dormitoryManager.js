@@ -108,9 +108,17 @@ function dormitoryManagerQuery() {
                 contentType: "application/json;charset=UTF-8",
                 url: '/dormitoryManager/findByName?name=' + dormitoryManagerName,
                 success: function (data) {
-                    contentDormitoryManagerData = data;
+                    var dataArray = new Array();
+                    if (!isNull(data)) {
+                        dataArray.push(data);
+                    }
+                    contentDormitoryManagerData = dataArray;
                     var table = $('#contentData');
                     table.bootstrapTable('refreshOptions', {data: contentDormitoryManagerData, dataType: "json"});
+
+                    // contentDormitoryManagerData = data;
+                    // var table = $('#contentData');
+                    // table.bootstrapTable('refreshOptions', {data: contentDormitoryManagerData, dataType: "json"});
                 },
                 error: function (data) {
                 }
@@ -221,7 +229,7 @@ function dormitoryManagerDelete(id) {
         datType: "json",
         accept: "application/json;charset=UTF-8",
         contentType: "application/json;charset=UTF-8",
-        url: '/dormitoryManager/delete?id'+id,
+        url: '/dormitoryManager/delete?id='+id,
         success: function (data) {
             swal('温馨提示', '删除宿管成功', 'success');
             initDormitoryManagerData();

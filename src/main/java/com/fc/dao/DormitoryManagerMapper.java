@@ -33,5 +33,5 @@ public interface DormitoryManagerMapper {
 
     DormitoryManager findAllBySn(String account);
 
-    List<DormitoryManager> findAllByName(String account);
+    List<DormitoryManager> findAllByName(@Param(value = "account") String name);
 }

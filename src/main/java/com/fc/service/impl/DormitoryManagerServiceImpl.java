@@ -4,9 +4,8 @@ import com.fc.dao.DormitoryManagerMapper;
 import com.fc.entity.DormitoryManager;
 import com.fc.entity.DormitoryManagerExample;
 import com.fc.service.DormitoryManagerService;
-import com.fc.vo.ResultVo;
+import com.fc.util.RandomNum;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -15,7 +14,6 @@ import java.util.List;
 @Service
 public class DormitoryManagerServiceImpl implements DormitoryManagerService {
     @Autowired
-    @Qualifier(value = "dormitoryManagerMapper")
     private DormitoryManagerMapper dormitoryManagerMapper;
 
     @Override
@@ -53,28 +51,29 @@ public class DormitoryManagerServiceImpl implements DormitoryManagerService {
     }
 
     @Override
-    public ResultVo<List<DormitoryManager>> findAll() {
-        List<DormitoryManager> list = dormitoryManagerMapper.selectByExample(null);
+    public List findAll() {
+        List<DormitoryManager> data = dormitoryManagerMapper.selectByExample(null);
 
-        ResultVo<List<DormitoryManager>> resultVo = new ResultVo<>();
 
-        resultVo.setData(list);
-
-        return resultVo;
+        return data;
     }
 
     @Override
-    public void addOrUpdate(String id, String name, String password, Date createTime) {
+    public void addOrUpdate(String id, String name, String password, Date createTime, String sex, String sn) {
         DormitoryManager dormitoryManager = new DormitoryManager();
 
         dormitoryManager.setPassword(password);
         dormitoryManager.setName(name);
+        dormitoryManager.setSex(sex);
+        dormitoryManager.setSn(sn);
+
 
         if (createTime != null) {
             dormitoryManager.setCreateTime(createTime);
         }
 
         if (id == null) {
+            dormitoryManager.setId(RandomNum.generateNiceString());
             dormitoryManagerMapper.insertSelective(dormitoryManager);
 
         } else {
