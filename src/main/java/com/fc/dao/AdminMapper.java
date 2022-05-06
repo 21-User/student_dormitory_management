@@ -2,12 +2,12 @@ package com.fc.dao;
 
 import com.fc.entity.Admin;
 import com.fc.entity.AdminExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Mapper
 public interface AdminMapper {
     long countByExample(AdminExample example);
 
@@ -32,4 +32,6 @@ public interface AdminMapper {
     int updateByPrimaryKey(Admin record);
 
     Admin findAllByName(@Param("account") String account);
+
+    Admin findAll(@Param("name") String name);
 }
