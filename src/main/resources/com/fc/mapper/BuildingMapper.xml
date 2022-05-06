@@ -255,4 +255,8 @@
       name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="findByName" resultType="com.fc.entity.Building">
+    select * from building where name = #{name}
+  </select>
 </mapper>
