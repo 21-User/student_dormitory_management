@@ -87,7 +87,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from building
     where id = #{id,jdbcType=VARCHAR}
@@ -103,11 +103,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fc.entity.Building">
-    insert into building (id, create_time, update_time, 
-      valid, version, dormitory_manager_id, 
+    insert into building (id, create_time, update_time,
+      valid, version, dormitory_manager_id,
       location, name)
-    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{valid,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{dormitoryManagerId,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+      #{valid,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{dormitoryManagerId,jdbcType=VARCHAR},
       #{location,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fc.entity.Building">
