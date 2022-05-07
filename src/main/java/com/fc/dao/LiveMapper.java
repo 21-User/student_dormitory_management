@@ -29,4 +29,5 @@ public interface LiveMapper {
     int updateByPrimaryKeySelective(Live record);
 
     int updateByPrimaryKey(Live record);
+
 }

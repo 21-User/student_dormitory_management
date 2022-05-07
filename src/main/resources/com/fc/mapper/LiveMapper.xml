@@ -171,7 +171,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+    <update id="updateByExampleSelective" parameterType="map">
     update live
     <set>
       <if test="record.id != null">
@@ -217,7 +217,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.fc.entity.Live">
+  <update id="updateByPrimaryKeySelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.fc.entity.Live">
     update live
     <set>
       <if test="createTime != null">
