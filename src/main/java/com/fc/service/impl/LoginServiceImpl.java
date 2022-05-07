@@ -140,6 +140,27 @@ public class LoginServiceImpl implements LoginService {
                 } else if (dormitoryManagers.size() == 1){
                     //获取该宿管存到dormitoryManager中得到该宿管的宿管号
                     dormitoryManager = dormitoryManagers.get(0);
+
+                    if (!loginVo.getPassword().equals(dormitoryManager.getPassword())) {
+                        resultVo.setCode("0004");
+                        resultVo.setInfo("密码错误，如需重置密码请联系管理员！");
+
+                        long time = new Date().getTime();
+                        resultVo.setTimestamp(time);
+
+                        return resultVo;
+                    } else {
+                        //密码正确
+                        resultVo.setCode("0000");
+                        long time = new Date().getTime();
+                        resultVo.setTimestamp(time);
+
+                        //登录成功，存入Session域键为user，值为account，键为userType,值为type；
+                        session.setAttribute("user", loginVo.getAccount());
+                        session.setAttribute("userType", loginVo.getType());
+
+                        return resultVo;
+                    }
                 } else {
                     //宿管名和宿管号都不存在
                     resultVo.setCode("0003");
@@ -194,8 +215,27 @@ public class LoginServiceImpl implements LoginService {
                     return resultVo;
                     //通过学名只查到一个
                 } else if (students.size() == 1){
-                    //获取该学生存到student对象中得到该学生的学号
                     student = students.get(0);
+                    if (!loginVo.getPassword().equals(student.getPassword())) {
+                        resultVo.setCode("0004");
+                        resultVo.setInfo("密码错误，如需重置密码请联系管理员！");
+
+                        long time = new Date().getTime();
+                        resultVo.setTimestamp(time);
+
+                        return resultVo;
+                    } else {
+                        //密码正确
+                        resultVo.setCode("0000");
+                        long time = new Date().getTime();
+                        resultVo.setTimestamp(time);
+
+                        //登录成功，存入Session域键为user，值为account，键为userType,值为type；
+                        session.setAttribute("user", loginVo.getAccount());
+                        session.setAttribute("userType", loginVo.getType());
+
+                        return resultVo;
+                    }
                 } else {
                     //学生名和学号都不存在
                     resultVo.setCode("0003");
