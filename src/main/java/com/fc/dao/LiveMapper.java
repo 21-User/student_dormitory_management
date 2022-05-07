@@ -2,10 +2,11 @@ package com.fc.dao;
 
 import com.fc.entity.Live;
 import com.fc.entity.LiveExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface LiveMapper {
     long countByExample(LiveExample example);
 
