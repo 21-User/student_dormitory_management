@@ -31,9 +31,6 @@ public class StudentServiceImpl implements StudentService {
             studentMapper.insert(student);
         } else {
             studentMapper.updateByPrimaryKeySelective(student);
-
-            //更新完之后查询一下返回最新的数据
-            studentMapper.selectByExample(null);
         }
     }
 
