@@ -282,11 +282,16 @@ function dormitoryDelete(id) {
         contentType: "application/json;charset=UTF-8",
         url: '/dormitory/delete?id=' + id,
         success: function (data) {
-            swal('温馨提示', '删除宿舍成功', 'success');
-            initDormitoryData();
+            if (data) {
+                swal('温馨提示', '删除宿舍成功', 'success');
+                initDormitoryData();
+            } else {
+                swal('温馨提示', '删除宿舍失败', 'error');
+            }
+
         },
         error: function (data) {
-            swal('温馨提示', '删除宿舍失败', 'error');
+
         }
     });
 }

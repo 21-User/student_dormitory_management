@@ -9,7 +9,7 @@ public interface DormitoryService {
 
     Dormitory findBySn(String sn);
 
-    void delete(String id);
+    boolean delete(String id);
 
     void addOrUpdate(Dormitory dormitory);
 }

@@ -13,8 +13,6 @@ public class DormitoryController {
     @Autowired
     private DormitoryService dormitoryService;
 
-
-
     @ResponseBody
     @GetMapping("findAll")
     public List findAll() {
@@ -27,8 +25,8 @@ public class DormitoryController {
     }
 
     @GetMapping("delete")
-    public void delete(String id) {
-        dormitoryService.delete(id);
+    public boolean delete(String id) {
+        return dormitoryService.delete(id);
     }
 
     @PostMapping("addOrUpdate")
