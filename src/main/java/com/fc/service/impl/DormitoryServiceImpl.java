@@ -1,11 +1,11 @@
 package com.fc.service.impl;
 
-import com.fc.dao.BuildingMapper;
 import com.fc.dao.DormitoryMapper;
 import com.fc.dao.LiveMapper;
 import com.fc.entity.*;
 import com.fc.service.DormitoryService;
 import com.fc.util.RandomNum;
+import com.fc.vo.DataVO;
 import com.fc.vo.DormitoryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +46,7 @@ public class DormitoryServiceImpl implements DormitoryService {
 
 
     @Override
-    public boolean delete(String id) {
+    public DataVO delete(String id) {
         LiveExample liveExample = new LiveExample();
 
         LiveExample.Criteria criteria = liveExample.createCriteria();
@@ -55,12 +55,17 @@ public class DormitoryServiceImpl implements DormitoryService {
 
         List<Live> lives = liveMapper.selectByExample(liveExample);
 
+        DataVO dataVO = null;
+
         if (lives.size() == 0 || lives == null) {
             dormitoryMapper.deleteByPrimaryKey(id);
-            return true;
+
+            dataVO = new DataVO(200, "删除宿舍成功", true);
+        } else {
+            dataVO = new DataVO(400, "宿舍有人，无法删除", false);
         }
 
-        return false;
+        return dataVO;
     }
 
     @Override

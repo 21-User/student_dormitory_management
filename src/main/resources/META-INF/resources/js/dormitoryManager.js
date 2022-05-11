@@ -231,11 +231,15 @@ function dormitoryManagerDelete(id) {
         contentType: "application/json;charset=UTF-8",
         url: '/dormitoryManager/delete?id='+id,
         success: function (data) {
-            swal('温馨提示', '删除宿管成功', 'success');
-            initDormitoryManagerData();
+            if (data.success) {
+                swal('温馨提示', data.message, 'success');
+                initDormitoryManagerData();
+            } else {
+                swal('温馨提示', data.message, 'error');
+            }
         },
         error: function (data) {
-            swal('温馨提示', '删除宿管失败', 'error');
+
         }
     });
 }

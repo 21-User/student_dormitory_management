@@ -2,6 +2,7 @@ package com.fc.controller;
 
 import com.fc.entity.DormitoryManager;
 import com.fc.service.DormitoryManagerService;
+import com.fc.vo.DataVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -34,7 +35,7 @@ public class DormitoryManagerController {
     }
 
     @GetMapping("delete")
-    public void delete(String id) {
-        dormitoryManagerService.delete(id);
+    public DataVO delete(String id) {
+        return dormitoryManagerService.delete(id);
     }
 }

@@ -1,6 +1,7 @@
 package com.fc.service;
 
 import com.fc.entity.Dormitory;
+import com.fc.vo.DataVO;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface DormitoryService {
 
     Dormitory findBySn(String sn);
 
-    boolean delete(String id);
+    DataVO delete(String id);
 
     void addOrUpdate(Dormitory dormitory);
 }

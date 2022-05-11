@@ -1,6 +1,7 @@
 package com.fc.service;
 
 import com.fc.entity.DormitoryManager;
+import com.fc.vo.DataVO;
 import com.fc.vo.ResultVo;
 
 import java.util.Date;
@@ -15,5 +16,5 @@ public interface DormitoryManagerService {
 
     void addOrUpdate(String id, String name, String password, Date createTime, String sex, String sn);
 
-    void delete(String id);
+    DataVO delete(String id);
 }
