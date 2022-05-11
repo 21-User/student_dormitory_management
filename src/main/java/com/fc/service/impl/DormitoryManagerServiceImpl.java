@@ -1,61 +1,114 @@
 package com.fc.service.impl;
 
+import com.fc.dao.BuildingMapper;
 import com.fc.dao.DormitoryManagerMapper;
+import com.fc.entity.Building;
+import com.fc.entity.BuildingExample;
 import com.fc.entity.DormitoryManager;
-import com.fc.entity.Student;
+import com.fc.entity.DormitoryManagerExample;
 import com.fc.service.DormitoryManagerService;
+import com.fc.util.RandomNum;
+import com.fc.vo.DataVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 
-import static com.fc.service.impl.RandomNum.generateNiceString;
-
-/**
- * @author: T21
- * @date: 2022/5/6.
- */
 @Service
 public class DormitoryManagerServiceImpl implements DormitoryManagerService {
     @Autowired
-    private DormitoryManagerMapper managerMapper;
+    private DormitoryManagerMapper dormitoryManagerMapper;
+
+    @Autowired
+    private BuildingMapper  buildingMapper;
 
     @Override
-    public List<DormitoryManager> findAll() {
+    public DormitoryManager findByName(String name) {
+        DormitoryManagerExample dormitoryManagerExample = new DormitoryManagerExample();
 
-        return managerMapper.selectByExample(null);
-    }
+        DormitoryManagerExample.Criteria criteria = dormitoryManagerExample.createCriteria();
 
-    @Override
-    public List<DormitoryManager> findByName(String name) {
+        criteria.andNameEqualTo(name);
 
-        return managerMapper.findAllByName(name);
+        List<DormitoryManager> managers = dormitoryManagerMapper.selectByExample(dormitoryManagerExample);
+
+        if (managers == null) {
+            return null;
+        }
+
+        return managers.get(0);
     }
 
     @Override
     public DormitoryManager findBySn(String sn) {
-        return managerMapper.findAllBySn(sn);
+        DormitoryManagerExample dormitoryManagerExample = new DormitoryManagerExample();
+
+        DormitoryManagerExample.Criteria criteria = dormitoryManagerExample.createCriteria();
+
+        criteria.andSnEqualTo(sn);
+
+        List<DormitoryManager> managers = dormitoryManagerMapper.selectByExample(dormitoryManagerExample);
+
+        if (managers == null) {
+            return null;
+        }
+
+        return managers.get(0);
     }
 
     @Override
-    public void addOrUpdate(DormitoryManager dormitoryManager) {
-        if (dormitoryManager.getId() == null) {
-            //设置32位随机十六进制的id
-            dormitoryManager.setId(generateNiceString());
-            dormitoryManager.setCreateTime(new Date());
+    public List findAll() {
+        List<DormitoryManager> data = dormitoryManagerMapper.selectByExample(null);
 
-            managerMapper.insert(dormitoryManager);
+
+        return data;
+    }
+
+    @Override
+    public void addOrUpdate(String id, String name, String password, Date createTime, String sex, String sn) {
+        DormitoryManager dormitoryManager = new DormitoryManager();
+
+        dormitoryManager.setPassword(password);
+        dormitoryManager.setName(name);
+        dormitoryManager.setSex(sex);
+        dormitoryManager.setSn(sn);
+
+
+        if (createTime != null) {
+            dormitoryManager.setCreateTime(createTime);
+        }
+
+        if (id == null) {
+            dormitoryManager.setId(RandomNum.generateNiceString());
+            dormitoryManagerMapper.insertSelective(dormitoryManager);
+
         } else {
-            managerMapper.updateByPrimaryKeySelective(dormitoryManager);
-
-            //更新完之后查询一下返回最新的数据
-            managerMapper.selectByExample(null);
+            dormitoryManager.setId(id);
+            dormitoryManagerMapper.updateByPrimaryKeySelective(dormitoryManager);
         }
     }
 
     @Override
-    public void delete(DormitoryManager dormitoryManager) {
-        managerMapper.deleteByPrimaryKey(dormitoryManager.getId());
+    public DataVO delete(String id) {
+        BuildingExample buildingExample = new BuildingExample();
+
+        BuildingExample.Criteria criteria = buildingExample.createCriteria();
+
+        criteria.andDormitoryManagerIdEqualTo(id);
+
+        List<Building> buildings = buildingMapper.selectByExample(buildingExample);
+
+        DataVO dataVO = null;
+
+        if (buildings.size() == 0) {
+            dormitoryManagerMapper.deleteByPrimaryKey(id);
+
+            dataVO = new DataVO(200, "开除成功", true);
+        } else {
+            dataVO = new DataVO(400, "该宿管已有任务，请先找人接替，在开除", false);
+        }
+
+        return dataVO;
     }
 }

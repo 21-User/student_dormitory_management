@@ -1,47 +1,41 @@
 package com.fc.controller;
 
-import com.fc.dao.DormitoryManagerMapper;
 import com.fc.entity.DormitoryManager;
-import com.fc.entity.Student;
 import com.fc.service.DormitoryManagerService;
+import com.fc.vo.DataVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-/**
- * @author: T21
- * @date: 2022/5/6.
- */
 @RestController
 @RequestMapping("dormitoryManager")
 public class DormitoryManagerController {
     @Autowired
-    private DormitoryManagerService managerService;
-
-    @GetMapping("findAll")
-    public List<DormitoryManager> findAll() {
-        return managerService.findAll();
-    }
-
+    private DormitoryManagerService dormitoryManagerService;
+    @ResponseBody
     @GetMapping("findByName")
-    public List<DormitoryManager> findByName(String name) {
-
-        return managerService.findByName(name);
+    public DormitoryManager findByName(String name) {
+        return dormitoryManagerService.findByName(name);
     }
-
+    @ResponseBody
     @GetMapping("findBySn")
     public DormitoryManager findBySn(String sn) {
-        return managerService.findBySn(sn);
+        return dormitoryManagerService.findBySn(sn);
     }
 
-    @PostMapping("addOrUpdate")
+    @GetMapping("findAll")
+    public List findAll() {
+        return dormitoryManagerService.findAll();
+    }
+
+
+    @PostMapping ("addOrUpdate")
     public void addOrUpdate(@RequestBody DormitoryManager dormitoryManager) {
-        managerService.addOrUpdate(dormitoryManager);
+        dormitoryManagerService.addOrUpdate(dormitoryManager.getId(), dormitoryManager.getName(), dormitoryManager.getPassword(), dormitoryManager.getCreateTime(), dormitoryManager.getSex(), dormitoryManager.getSn());
     }
 
     @GetMapping("delete")
-    public void delete(DormitoryManager dormitoryManager) {
-        managerService.delete(dormitoryManager);
+    public DataVO delete(String id) {
+        return dormitoryManagerService.delete(id);
     }
 }

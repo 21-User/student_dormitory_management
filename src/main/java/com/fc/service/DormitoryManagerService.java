@@ -1,22 +1,20 @@
 package com.fc.service;
 
 import com.fc.entity.DormitoryManager;
-import com.fc.entity.Student;
+import com.fc.vo.DataVO;
+import com.fc.vo.ResultVo;
 
+import java.util.Date;
 import java.util.List;
 
-/**
- * @author: T21
- * @date: 2022/5/6.
- */
-public interface DormitoryManagerService{
-    List<DormitoryManager> findAll();
-
-    List<DormitoryManager> findByName(String name);
+public interface DormitoryManagerService {
+    DormitoryManager findByName(String name);
 
     DormitoryManager findBySn(String sn);
 
-    void addOrUpdate(DormitoryManager dormitoryManager);
+    List findAll();
 
-    void delete(DormitoryManager dormitoryManager);
+    void addOrUpdate(String id, String name, String password, Date createTime, String sex, String sn);
+
+    DataVO delete(String id);
 }
