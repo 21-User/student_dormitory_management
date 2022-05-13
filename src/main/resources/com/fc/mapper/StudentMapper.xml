@@ -88,7 +88,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from student
     where id = #{id,jdbcType=VARCHAR}
@@ -104,12 +104,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fc.entity.Student">
-    insert into student (id, create_time, update_time, 
-      valid, version, name, 
-      password, sex, sn)
-    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{valid,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR})
+    insert into student (id, create_time, update_time,
+                         valid, version, name,
+                         password, sex, sn)
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+            #{valid,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+            #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fc.entity.Student">
     insert into student
@@ -216,14 +216,14 @@
   <update id="updateByExample" parameterType="map">
     update student
     set id = #{record.id,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      valid = #{record.valid,jdbcType=VARCHAR},
-      version = #{record.version,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      sex = #{record.sex,jdbcType=VARCHAR},
-      sn = #{record.sn,jdbcType=VARCHAR}
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    valid = #{record.valid,jdbcType=VARCHAR},
+    version = #{record.version,jdbcType=INTEGER},
+    name = #{record.name,jdbcType=VARCHAR},
+    password = #{record.password,jdbcType=VARCHAR},
+    sex = #{record.sex,jdbcType=VARCHAR},
+    sn = #{record.sn,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -261,13 +261,13 @@
   <update id="updateByPrimaryKey" parameterType="com.fc.entity.Student">
     update student
     set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      valid = #{valid,jdbcType=VARCHAR},
-      version = #{version,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=VARCHAR},
-      sn = #{sn,jdbcType=VARCHAR}
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        valid = #{valid,jdbcType=VARCHAR},
+        version = #{version,jdbcType=INTEGER},
+        name = #{name,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        sex = #{sex,jdbcType=VARCHAR},
+        sn = #{sn,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="findAllBySn" resultType="com.fc.entity.Student">

@@ -86,7 +86,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from admin
     where id = #{id,jdbcType=VARCHAR}
@@ -102,12 +102,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.fc.entity.Admin">
-    insert into admin (id, create_time, update_time, 
-      valid, version, name, 
-      password)
-    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{valid,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR})
+    insert into admin (id, create_time, update_time,
+                       valid, version, name,
+                       password)
+    values (#{id,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+            #{valid,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+            #{password,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.fc.entity.Admin">
     insert into admin
@@ -196,12 +196,12 @@
   <update id="updateByExample" parameterType="map">
     update admin
     set id = #{record.id,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      valid = #{record.valid,jdbcType=VARCHAR},
-      version = #{record.version,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR}
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    valid = #{record.valid,jdbcType=VARCHAR},
+    version = #{record.version,jdbcType=INTEGER},
+    name = #{record.name,jdbcType=VARCHAR},
+    password = #{record.password,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -233,11 +233,11 @@
   <update id="updateByPrimaryKey" parameterType="com.fc.entity.Admin">
     update admin
     set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      valid = #{valid,jdbcType=VARCHAR},
-      version = #{version,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR}
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        valid = #{valid,jdbcType=VARCHAR},
+        version = #{version,jdbcType=INTEGER},
+        name = #{name,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="findAllByName" resultType="com.fc.entity.Admin">

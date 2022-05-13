@@ -2,11 +2,11 @@ package com.fc.dao;
 
 import com.fc.entity.Building;
 import com.fc.entity.BuildingExample;
+import com.fc.vo.BuildingVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
 @Mapper
 public interface BuildingMapper {
     long countByExample(BuildingExample example);
@@ -31,5 +31,5 @@ public interface BuildingMapper {
 
     int updateByPrimaryKey(Building record);
 
-    Building findByName(@Param("name") String name);
+    List<BuildingVO> findAll();
 }
