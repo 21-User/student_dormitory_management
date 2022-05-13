@@ -11,6 +11,12 @@
     <result column="location" jdbcType="VARCHAR" property="location" />
     <result column="name" jdbcType="VARCHAR" property="name" />
   </resultMap>
+  <select id="findAll" resultType="com.fc.vo.BuildingVO">
+    select bd.*, dm.sn as dormitoryManagerSn, dm.name as dormitoryManagerName
+    from building bd
+    inner join dormitory_manager dm
+    on bd.dormitory_manager_id = dm.id
+  </select>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

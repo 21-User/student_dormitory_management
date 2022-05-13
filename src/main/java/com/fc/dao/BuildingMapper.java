@@ -2,6 +2,7 @@ package com.fc.dao;
 
 import com.fc.entity.Building;
 import com.fc.entity.BuildingExample;
+import com.fc.vo.BuildingVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -29,4 +30,6 @@ public interface BuildingMapper {
     int updateByPrimaryKeySelective(Building record);
 
     int updateByPrimaryKey(Building record);
+
+    List<BuildingVO> findAll();
 }
